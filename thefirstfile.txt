@@ -1,1 +1,55 @@
 thefirstfile  20170504
+
+git
+————————————06/02/2017
+Method:  
+GUI Tools：SourceTree and GitHub-Desktop
+类似svn : 1.add 2.commit 3.push
+Git command line:
+
+创建有远程仓库Repostiory   Bitbucket GitHub(public)
+1.git init
+2.git remote add origin http://
+
+添加项目文件
+git最常用命令:  可以重命名（与SVN同步）
+1.git add xxx     添加文件（到暂存区中） 添加文件内容（$ echo c1>>xxx） git add 
+2.git commit -m”sss” (要先git pull)      提交文件并提交log到本地仓库 （防止冲突，和SVN的update类似）
+3.git push -u origin master  提交文件并提交log到远程仓库origin（别名）的master分支）下
+
+增加修改删除
+git add
+1.Git checkout -- file 丢弃（删除）工作区的修改
+2.git reset HEAD filename（（从暂存区中移除文件）） +步骤1  （添加暂存区：commit）
+3.撤销本次提交（版本回退）（前提没有推送到远程库） git reset --hard commit_id  （版本穿梭）
+（用git log可以查看提交历史）要重返未来，用git reflog查看命令历史，以便确定要回到未来的哪个版本
+4.删错了 $ git checkout -- test.txt  命令git rm用于删除一个文件。
+
+
+merge 融合
+Branch (复杂的项目会有多个，最后版本需要融合)
+# 切换到Master分支
+git checkout master
+# 对Develop分支进行合并   使用--no-ff参数后，会执行正常合并，在Master分支上生成一个新节点。
+git merge --no-ff develop
+
+分支操作
+创建新分支：git branch branchName。    $ git br a
+切换到新分支：git checkout branchName  $ git co a   =git co a —-a  检出a分支下的a文件
+合成为一个命令： git checkout -b branchName
+
+   比较(test,master)两个分支
+$ cat a          //显示a文件中的内容(当前分支). Cat .git/HEAD
+1. git branch <branch> <start point> 以某个commit创建新分支(=commitID)。
+2.  git checkout --datch <branch> 切换到master的最后一次commit值的状态下！<branch>=master
+3. git checkout -B <branch> 强制创建新的分支（普通的-b同名分支时候报错）=master
+4. git checkout --orphan <branch> + git commit 创建新分支，并取消提交历史记录
+5. git checkout --merge <branch> 将当前分支修改的内容打包带走（慎用）（内容不同时冲突，当前分支内容丢失）
+6. git checkout -p <branch> //比较(test,master)两个分支的内容差异 y :(当前分支master中合并添加test中的不同内容)
+
+Tips:小技巧
+本地的Repository(=本地版本服务器)(+多个Branches) 
+提交commit(ci) status(st) checkout(co)切糕 update(up) diff比较
+1.$ git stash 临时的区域  checkout (创建分支和切换分支)
+
+————————————
